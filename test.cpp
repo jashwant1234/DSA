@@ -1,75 +1,63 @@
 #include <bits/stdc++.h>
-#define begin begin()
-#define end end()
-#define ll long long
-#define fast ios_base::sync_with_stdio(false); cin.tie(NULL);
-#define F first
-#define S second
-#define PI 3.14159265
 using namespace std;
-int divisorSubstrings(int n, int k) {
-set<int>a;
-int m=n;
-while(n>pow(10,k-1) )
-{
-    int l=pow(10,k);
-    int x=n%l;
-    //cout<<x<<endl;
-    n/=10;
-    a.insert(x);
+using ll=long long;
+#define vll vector<ll>
+ll dp[2000+1][1000+1];
+int fun(long long n){
+        
+    long long sr = floor(sqrt(n));
+    if(sr*sr == n ){
+        return (sr-1)*(sr-1);
+    }else{
+        //long long k=min(n-(sr*sr),(sr+1)*(sr+1)-n);
+       return (n-(sr*sr))<((sr+1)*(sr+1)-n) ? n-(n-(sr*sr)) : n+((sr+1)*(sr+1)-n);
     }
-    int c=0;
-    for(auto i:a)
-    {
-    
-        if(m%i==0 && i!=0)
-           c++;
-    }
-    return c;
-}
 
-bool sortbysec(const pair<int,int> &a, 
-              const pair<int,int> &b) 
-{ 
-    return (a.F > b.F); 
 }
-long long int fact(long long int N)
-    {
-        if(N==0)
-           return 1;
-        return (N*fact(N-1));   
+long long minimumTimeHire2021(vector<ll> cars, vector<ll> bat_pos, ll dest) {
+    vector<vector<ll> > dp(2001, vector<ll> (1001, INT_MAX));
+	int n=cars.size();
+	int k=bat_pos.size();
+	for(int i=0;i<=2000;i++)
+		for(int j=0;j<=1000;j++){
+			if(i==0){
+				dp[i][j]=0;
+			}
+		}
+		
+	vll rel_pos=bat_pos;
+	ll ans=0;
+	for(int i=0;i<bat_pos.size();++i){
+		rel_pos[i]=abs(bat_pos[i]-dest);
+	}
+	for(int i=1;i<=n;++i){
+		for(int j=1;j<=k;++j){
+			dp[i][j]=min(max(abs(bat_pos[j-1]-cars[i-1])+rel_pos[j-1], dp[i-1][j-1]), dp[i][j-1]);
+		}
     }
-int digitsInFactorial(int N)
-{
-    return(floor(log10(fact(N))+1));
-    // code here
-}
-int exactly3Divisors(int N)
-{
-    int count=0;
-    N=sqrt(N);
-    cout<<N<<" ";
-    vector<bool>prime(N,true);
-    for(int i=2;i<=N;i++)
-    {
-        if(prime[i]){count++;
-            for(int k=i*i;k<=N;k+=i)
-                prime[k]=false;
-        }
-    }
-   
-    return count;
-    //Your code here
+	return dp[n][k];
 }
 int main() {
-     clock_t clk_start = clock();
-    fast
         #ifndef ONLINE_JUDGE
-       freopen("input.txt", "r", stdin);
+      freopen("input.txt", "r", stdin);
         freopen("output.txt", "w", stdout);
      #endif
-     int k,n;
-     cin>>n>>k;
-     divisorSubstrings(n,k);
+    int n = 1;
+    // cin>>n;
+
+    while(n--)
+    {
+        long long num, num1;
+        cin>>num>>num1;
+        vector<ll> cars(num), bat_pos(num1);
+        int pos;
+        for(auto &i: cars)
+        cin>>i;
+        for(auto &i : bat_pos)
+            cin>>i;
+        cin>>pos;
+        cout<<minimumTimeHire2021(cars, bat_pos, pos);
+    }
+	//code
 	return 0;
 }
