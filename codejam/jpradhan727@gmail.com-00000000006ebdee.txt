@@ -1,0 +1,17 @@
+for i in range(int(input())) :
+    n=int(input())
+    l=[int(x) for x in input().split()]
+    sum0=0
+    flag = 0
+    if sorted(l,reverse=True)==l:
+        flag=1
+    for a in range(0,n-1) :
+        if(flag):
+            sum0 = n+n-2
+            break
+        b=l.index(min(l[a:]))
+        sum0=b-a+1+sum0
+        l2=l[a:b+1]
+        l2.reverse()
+        l=l[:a]+l2+l[b+1:]
+    print("Case #"+str(i+1)+": "+str(sum0))

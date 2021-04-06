@@ -1,0 +1,26 @@
+for k in range(int(input())):
+    
+    l=list(map(str,input().split()))
+    a,b=int(l[0]),int(l[1])
+    s=list(l[2])
+    flag=0
+    for i in range(len(s)):
+        if i==0 and s[i]=='?':
+            flag=1 
+            continue
+        elif flag==1 and s[i]=='?':
+            continue
+        elif flag==1 and s[i]!='?':
+            for j in range(i,-1,-1):
+                s[j]=s[i]
+            flag=0    
+        elif s[i]=='?' and flag==0:
+            s[i]=s[i-1]
+    cost=0        
+    for i in range(len(s)-1):
+        if (s[i]=='C' and s[i+1]=='J'):
+            cost+=a 
+        elif (s[i]=='J' and s[i+1]=='C'):
+            cost+=b 
+    print("Case #"+str(k+1)+':',cost)        
+            
