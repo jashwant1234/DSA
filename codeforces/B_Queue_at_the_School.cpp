@@ -73,23 +73,23 @@ int main()
     //         cin>>vec[i];
     //     }
     // }
-    int n;
-    cin>>n;
-    int sum=0,sum1=0,sum2=0;
-    for(int i=0;i<n*3;i++){
-        int k;
-        cin>>k;
-        if(i%3==0)
-            sum+=k;
-        else if(i%3==1)
-            sum1+=k;
-        else    
-            sum2+=k;
+    int n,t;
+    cin>>n>>t;
+    string str;
+    // getline(cin,str);
+    cin>>str;
+    // cout<<str<<endl;
+    while(t--){
+        for(int i=0; i<n-1; i++){
+            if(str[i]=='B' && str[i+1]=='G')
+                {swap(str[i],str[i+1]);i++;}
+        }
     }
-   if(sum == 0 && sum1 == 0 && sum2 == 0)
-    cout<<"YES";
-    else
-        cout<<"NO";
+    cout<<str;
+
+
+
+
 
     #ifndef ONLINE_JUDGE
     cerr << "Execution Time: " << fixed << double(clock() - clk_start) / double(CLOCKS_PER_SEC) << setprecision(6) << " sec\n";

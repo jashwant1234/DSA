@@ -63,33 +63,21 @@ int main()
        freopen("output.txt", "w", stdout);
        freopen("Error.txt", "w", stderr);
      #endif
-    //  int t;
-    // cin>>t;
-    // while (t--){
-    //     int n;
-    //     cin>>n;
-    //     vector<int>vec(n);
-    //     for (int i=0; i<n; i++){
-    //         cin>>vec[i];
-    //     }
-    // }
-    int n;
-    cin>>n;
-    int sum=0,sum1=0,sum2=0;
-    for(int i=0;i<n*3;i++){
-        int k;
-        cin>>k;
-        if(i%3==0)
-            sum+=k;
-        else if(i%3==1)
-            sum1+=k;
-        else    
-            sum2+=k;
+    int t;
+    cin>>t;
+    while (t--){
+        int n;
+        cin>>n;
+        vector<int>vec(n);
+        for (int i=0; i<n; i++){
+            cin>>vec[i];
+        }
     }
-   if(sum == 0 && sum1 == 0 && sum2 == 0)
-    cout<<"YES";
-    else
-        cout<<"NO";
+
+
+
+
+
 
     #ifndef ONLINE_JUDGE
     cerr << "Execution Time: " << fixed << double(clock() - clk_start) / double(CLOCKS_PER_SEC) << setprecision(6) << " sec\n";
