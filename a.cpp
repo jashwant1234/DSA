@@ -52,7 +52,33 @@ template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_pr
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T,size_t n> void _print(T (&arr)[n]) {cerr << "[ ";ll size = sizeof(T)*n/sizeof(arr[0]); for(T i=0;i<size;i++) {_print(arr[i]); cerr << " ";} cerr << "]";}
-
+vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int>k;
+        unordered_map<int,int>uum;
+        // int j=0;
+        int pre=0;
+        for(int i=0;i<nums.size();i++){
+            pre+=nums[i];
+            if(pre==target){
+                k.push_back(0);
+                k.push_back(i);
+                return k;
+            }
+            auto it=uum.find(pre-target);
+            if(it!=uum.end()){
+                k.push_back(it->second);
+                k.push_back(i);
+                return k;
+            }
+            uum.insert(pre,i);
+        }
+            if(pre==target){
+                k.push_back(0);
+                k.push_back(nums.size()-1);
+                return k;
+            }
+        
+    }
 
 int main()
 {
@@ -63,8 +89,8 @@ int main()
        freopen("output.txt", "w", stdout);
        freopen("Error.txt", "w", stderr);
      #endif
-    //  int t;
-    // cin>>t;
+     int t;
+    cin>>t;
     // while (t--){
     //     int n;
     //     cin>>n;
@@ -73,24 +99,8 @@ int main()
     //         cin>>vec[i];
     //     }
     // }
-    int n;
-    cin>>n;
-    int sum=0,sum1=0,sum2=0;
-    for(int i=0;i<n*3;i++){
-        int k;
-        cin>>k;
-        if(i%3==0)
-            sum+=k;
-        else if(i%3==1)
-            sum1+=k;
-        else    
-            sum2+=k;
-    }
-   if(sum == 0 && sum1 == 0 && sum2 == 0)
-    cout<<"YES";
-    else
-        cout<<"NO";
-
+   
+    rever
     #ifndef ONLINE_JUDGE
     cerr << "Execution Time: " << fixed << double(clock() - clk_start) / double(CLOCKS_PER_SEC) << setprecision(6) << " sec\n";
     #endif
