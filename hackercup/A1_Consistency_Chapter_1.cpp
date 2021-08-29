@@ -15,7 +15,7 @@ using namespace std;
 #define PI 3.141592653589793238462
 #define set_bits __builtin_popcountll
 #define sz(x) ((int)(x).size())
-#define all(x) (x).begin(), (x).end()
+#define all(x) x.begin(),x.end()
 
 typedef long long ll;
 typedef unsigned long long ull;
@@ -63,7 +63,47 @@ int main()
        freopen("output.txt", "w", stdout);
        freopen("Error.txt", "w", stderr);
      #endif
-     
+     int t;
+    cin>>t;
+    int i=1;
+    while (i<=t){
+        string str;
+        cin>>str;
+        int cons=0,vowel=0;
+        vector<int>uuc(128,0),uuv(128,0);
+        for(int i=0;i<str.length();i++){
+            if(str[i] == 'A' ||str[i] == 'U' ||str[i] == 'O' ||str[i] == 'I' ||str[i] == 'E' ){
+                vowel++;
+                uuv[str[i]]++;
+            }else{
+                cons++;
+                uuc[str[i]]++;
+            }
+        }
+   
+        int maxv=*max_element(all(uuv));
+        int maxc=*max_element(all(uuc));
+        int res=0;
+        int vowel_left=vowel-maxv;
+        int cons_left=cons-maxc;
+        // debug(vowel_left);
+        // debug(cons_left);
+        if(cons_left == 0 && vowel_left==0){
+            res=0;
+        }
+        else if(vowel_left<=cons_left){
+                res = vowel_left*2;
+                res +=cons;
+                // debug(res);
+        }else{
+            res = cons_left*2;
+            res +=vowel;
+        }
+        cout<<"Case #"<<i<<": "<<res<<endl;
+        i++;
+    }
+
+
 
 
 
