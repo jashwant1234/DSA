@@ -62,13 +62,20 @@ int main()
        freopen("input.txt", "r", stdin);
        freopen("output.txt", "w", stdout);
        freopen("Error.txt", "w", stderr);
-     #endif 
-     int n;
-     cin>>n;
-     if(n>2 && n%2==0)
-        cout<<"Yes";
-    else
-        cout<<"No";
+     #endif
+     string str;
+     cin>>str;
+     unordered_set<char>us{'a','e','i','o','u','y','A','I','O','U','Y','E'};
+     for(int i=0;i<str.length();i++){
+         if(us.find(str[i])!=us.end())
+            continue;
+        cout<<".";
+        if(isupper(str[i]))
+{char c; c = tolower(str[i]); cout<<c;}
+        else
+            cout<<str[i];
+
+     }
 
 
 

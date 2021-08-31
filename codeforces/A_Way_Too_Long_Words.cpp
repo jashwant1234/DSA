@@ -62,13 +62,19 @@ int main()
        freopen("input.txt", "r", stdin);
        freopen("output.txt", "w", stdout);
        freopen("Error.txt", "w", stderr);
-     #endif 
-     int n;
-     cin>>n;
-     if(n>2 && n%2==0)
-        cout<<"Yes";
-    else
-        cout<<"No";
+     #endif
+     int t;
+    cin>>t;
+    while (t--){
+        string str;
+        cin>>str;
+        int n=str.length();
+        if(n>10)
+            cout<<str[0]<<n-2<<str[n-1]<<endl;
+        else
+            cout<<str<<endl;
+    }
+
 
 
 
